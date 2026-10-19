@@ -1,63 +1,69 @@
 # HEIC2JPG
 
-一个简单的 Windows 小工具,把 iPhone 等设备拍摄的 **HEIC / HEIF** 照片批量转换为 **JPG**。
+**English** | [简体中文](README.zh-CN.md)
 
-- 单文件 exe,下载即用,无需安装 Python,也不需要微软商店的 HEVC 扩展
-- 支持拖放文件 / 文件夹(包含子文件夹),多线程批量转换
-- 可调 JPG 质量(50–100,默认 92)
-- 保留 EXIF 信息(拍摄时间、相机型号、GPS 等)和色彩配置文件
-- 自动按拍摄方向旋正照片
-- 保留原文件的修改时间
-- 同名文件自动改名为 `xxx (1).jpg`,也可选择覆盖
-- 可选:转换后删除原 HEIC 文件
-- 适配高分屏(125% / 150% 缩放下清晰显示)
-- 支持格式:`.heic` `.heif` `.hif`
+A simple Windows tool to batch convert **HEIC / HEIF** photos (e.g. from iPhone) to **JPG**.
 
-## 下载
+- Single-file exe – just download and run. No Python and no Microsoft HEVC extension needed
+- Drag & drop files or folders (subfolders included), multi-threaded batch conversion
+- Adjustable JPG quality (50–100, default 92)
+- Keeps EXIF metadata (date taken, camera model, GPS, …) and the color profile
+- Auto-rotates photos according to their orientation
+- Keeps the original file's modified time
+- Name conflicts are resolved as `name (1).jpg`, or you can choose to overwrite
+- Optional: delete the original HEIC files after converting
+- Sharp on high-DPI displays (125% / 150% scaling)
+- English and Chinese interface (follows the system language, switchable in the app)
+- Supported formats: `.heic` `.heif` `.hif`
 
-到 [Releases](../../releases/latest) 页面下载 `HEIC2JPG.exe`,双击运行即可。
+## Download
 
-> 首次运行时 Windows SmartScreen 可能提示"未知发布者",点击「更多信息」→「仍要运行」。
+Get `HEIC2JPG.exe` from the [Releases](../../releases/latest) page and double-click to run.
 
-## 使用方法
+> On first launch Windows SmartScreen may show "Windows protected your PC". Click **More info** → **Run anyway**.
 
-1. 双击 `HEIC2JPG.exe` 打开
-2. 把 HEIC 文件或文件夹拖进列表(或点「添加文件」「添加文件夹」)
-3. 按需调整设置,点击「开始转换」
+## Usage
 
-也可以直接把文件拖到 exe 图标上打开。
+1. Double-click `HEIC2JPG.exe`
+2. Drag HEIC files or folders into the list (or click **Add Files** / **Add Folder**)
+3. Adjust the settings if needed and click **Convert**
 
-### 命令行
+You can also drop files directly onto the exe icon.
+
+The interface language follows your Windows display language. Use the **Language** box in the top-right corner to switch between English and 中文; your choice is remembered.
+
+### Command line
 
 ```bat
-HEIC2JPG.exe --cli D:\照片 -o D:\输出 -q 90
+HEIC2JPG.exe --cli D:\Photos -o D:\Output -q 90
 ```
 
-| 参数 | 说明 |
+| Option | Description |
 | --- | --- |
-| `-o, --out` | 输出目录(默认与原文件相同) |
-| `-q, --quality` | JPG 质量 1–100(默认 92) |
-| `--no-exif` | 不保留 EXIF |
-| `--overwrite` | 覆盖已存在的同名 JPG |
-| `--delete` | 转换成功后删除原文件 |
+| `-o, --out` | Output folder (default: same as source) |
+| `-q, --quality` | JPG quality 1–100 (default: 92) |
+| `--no-exif` | Do not keep EXIF metadata |
+| `--overwrite` | Overwrite existing JPG files with the same name |
+| `--delete` | Delete the original file after a successful conversion |
+| `--lang en\|zh` | Message language (default: system language) |
 
-## 从源码运行 / 打包
+## Run from source / build
 
-需要 Python 3.10+:
+Requires Python 3.10+:
 
 ```bat
 pip install -r requirements.txt
 python heic2jpg.py
 ```
 
-打包成 exe:运行 `build.bat`,生成的文件在 `dist\HEIC2JPG.exe`。
+To build the exe, run `build.bat`. The output is `dist\HEIC2JPG.exe`.
 
-## 依赖
+## Dependencies
 
 - [Pillow](https://github.com/python-pillow/Pillow)
-- [pi-heif](https://github.com/bigcat88/pillow_heif)(仅解码版, 内置 libheif / libde265, LGPL)
-- [tkinterdnd2](https://github.com/Eliav2/tkinterdnd2)(拖放支持)
+- [pi-heif](https://github.com/bigcat88/pillow_heif) (decode-only build, bundles libheif / libde265, LGPL)
+- [tkinterdnd2](https://github.com/Eliav2/tkinterdnd2) (drag & drop)
 
-## 许可证
+## License
 
 [MIT](LICENSE)
